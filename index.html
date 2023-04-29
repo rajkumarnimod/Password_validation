@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password validation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        #password {
+            width: 250px;
+        }
+
+        #message {
+            width: 250px;
+            padding: 10px;
+            color: red;
+            border: 1px solid black;
+            margin-top: 2px;
+            box-sizing: border-box;
+            display: none;
+        }
+
+        #check {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        Password <br>
+        <input type="password" name="password" id="password" onclick="show()" oninput="check()">
+        <i class="fa fa-check" aria-hidden="true" style="opacity: 0;" id="check"></i>
+        <div id="message">
+            <p id="upper">Capital letter required !</p>
+            <p id="lower">Small letter required !</p>
+            <p id="num">Number required !</p>
+        </div>
+    </form>
+
+    <script>
+        function show() {
+            var Password = document.getElementById("password");
+            var message = document.getElementById("message");
+            message.style.display = "block";
+        }
+
+        function check() {
+            var Password = document.getElementById("password").value;
+            var upper = document.getElementById("upper");
+            var lower = document.getElementById("lower");
+            var num = document.getElementById("num");
+            var message = document.getElementById("message");
+            var check = document.getElementById("check");
+            var capital = /[A-Z]/g;
+            var small = /[a-z]/g;
+            var number = /[0-9]/;
+
+            Password.match(capital) ? upper.style.display = "none" : upper.style.display = "block";
+            Password.match(small) ? lower.style.display = "none" : lower.style.display = "block";
+            Password.match(number) ? num.style.display = "none" : num.style.display = "block";
+            Password.match(capital) && Password.match(small) && Password.match(number) ? message.style.display = "none" : message.style.display = "block";
+            Password.match(capital) && Password.match(small) && Password.match(number) ? check.style.opacity = "1" : check.style.opacity = "0";
+        }
+    </script>
+</body>
+
+</html>
